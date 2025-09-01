@@ -17,3 +17,11 @@ pip install -e .
 
 3. Run tests
 pytest --maxfail=1 -q
+
+C)First time running:
+
+1. Create Venv: python3 -m venv {path/to/NameOfVenv}
+
+2. Activate Venv: source {path/to/NameOfVenv}/bin/activate
+
+3. Install dependancies : pip install -r {/path/to/}requirements.txt
