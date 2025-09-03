@@ -3,7 +3,7 @@ import json
 import shutil
 from enum import Enum
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date
 
 
 _expenses: list = []
@@ -21,7 +21,7 @@ _PROJECT_ROOT = os.path.abspath(os.path.join(_THIS_DIR, os.pardir, os.pardir))
 DATA_DIR = os.path.join(_PROJECT_ROOT, 'data')
 DATA_FILE = os.path.join(DATA_DIR, 'expenses.json')
 ARCHIVE_DIR = os.path.join(_PROJECT_ROOT, 'data', 'archive')
-ARCHIVE_FILE = os.path.join(ARCHIVE_DIR, f"expense-{datetime.now():%Y-%m-%d}_backup.json")
+ARCHIVE_FILE = os.path.join(ARCHIVE_DIR, "expense-{:%Y-%m-%d}_backup.json")
 
 
 class Category(Enum):
@@ -39,7 +39,7 @@ class Category(Enum):
 @dataclass
 class Expense:
     """
-    Mutable record of a single out-going amount.
+    Immutable record of a single out-going amount.
 
     Attributes
     ----------
