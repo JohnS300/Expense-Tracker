@@ -1,6 +1,8 @@
 import os
 import json
 import shutil
+import csv
+import io
 from enum import Enum
 from dataclasses import dataclass
 from datetime import date, datetime
@@ -183,8 +185,17 @@ def to_csv() -> str:
     Return all expenses as a CSV string with header line.
     Columns: amount,date ,category,description
     """
-    _expenses_csv = ["amount,date,category,description"]
+    output_string = io.StringIO()
+    write = csv.writer(output_string, lineterminator="\n")
+    write.writerow(["amount,date,category,description"])
     for i in _expenses:
-        newLine = f"{i.amount},{i.date_of_expense},{i.category},'{i.description}'"
-        _expenses_csv.append(newLine)
-    return "\n".join(_expenses_csv)
+        write.writerow([f"{i.amount:.2f}", i.date_of_expense, i.category.name, i.description])
+    return output_string.getvalue()
+
+
+def write_csv(path: str) -> None:
+    with open(path, "w", newline="") as output_file:
+        write = csv.writer(output_file)
+        write.writerow(["amount,date,category,description"])
+        for i in _expenses:
+            write.writerow([f"{i.amount:.2f}", i.date_of_expense, i.category.name, i.description])
