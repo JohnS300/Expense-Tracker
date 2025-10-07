@@ -102,6 +102,19 @@ def _save() -> None:
     # 3) Atomically replace the real data file
     os.replace(tmp_path, DATA_FILE)
 
+def load():
+    ensure DATA_DIR exists
+    ensure ARCHIVE_DIR exists
+    today_str = YYYY-MM-DD  # from date.today()
+
+    ensure folder ARCHIVE_DIR/today_str exists (mkdir if missing)
+
+    if DATA_FILE exists:
+        try read JSON → list of dicts
+        _expenses = [Expense.from_dict(d) for d in raw]
+    else:
+        _expenses = []
+
 
 def add_expense(amount, date_of_expense, category, description):
     """
