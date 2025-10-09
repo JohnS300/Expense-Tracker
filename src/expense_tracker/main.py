@@ -103,8 +103,8 @@ def _save() -> None:
     os.replace(tmp_path, DATA_FILE)
 
 def load():
-    ensure DATA_DIR exists
-    ensure ARCHIVE_DIR exists
+    os.makedirs(DATA_DIR, exist_ok=True)
+    os.makedirs(ARCHIVE_DIR, exist_ok=True)
     today_str = YYYY-MM-DD  # from date.today()
 
     ensure folder ARCHIVE_DIR/today_str exists (mkdir if missing)
