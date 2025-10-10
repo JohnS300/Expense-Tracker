@@ -105,9 +105,9 @@ def _save() -> None:
 def load():
     os.makedirs(DATA_DIR, exist_ok=True)
     os.makedirs(ARCHIVE_DIR, exist_ok=True)
-    today_str = YYYY-MM-DD  # from date.today()
+    today_str = date.today()
 
-    ensure folder ARCHIVE_DIR/today_str exists (mkdir if missing)
+    os.makedirs(ARCHIVE_DIR/today_str, exist_ok=True)
 
     if DATA_FILE exists:
         try read JSON → list of dicts
