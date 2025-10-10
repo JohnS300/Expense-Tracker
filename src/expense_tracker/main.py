@@ -105,11 +105,10 @@ def _save() -> None:
 def load():
     os.makedirs(DATA_DIR, exist_ok=True)
     os.makedirs(ARCHIVE_DIR, exist_ok=True)
-    today_str = date.today()
+    today_str = str(date.today())
 
-    os.makedirs(ARCHIVE_DIR/today_str, exist_ok=True)
-
-    if DATA_FILE exists:
+    os.makedirs(os.path.join(ARCHIVE_DIR, today_str), exist_ok=True)
+    if os.path.exists(DATA_FILE) :
         try read JSON → list of dicts
         _expenses = [Expense.from_dict(d) for d in raw]
     else:
