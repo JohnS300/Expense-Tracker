@@ -116,6 +116,7 @@ def load():
 
 
 
+
 def add_expense(amount, date_of_expense, category, description):
     """
     Record one new expense after validating all inputs.
